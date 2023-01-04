@@ -1,3 +1,5 @@
+from fleury import fleury
+
 class WierzcholekGrafu:
     etykieta: str
     krawedzie: list
@@ -27,23 +29,28 @@ class Krawedz:
         return f"{self.wierzcholek1} <---> {self.wierzcholek2}"
 
 
-wierzcholki = []
+def przykladowyGraf() -> list:
+    wierzcholki = []
 
-for i in range(10):
-    wierzcholek = WierzcholekGrafu(str(i + 1))
-    wierzcholki.append(wierzcholek)
+    for i in range(4):
+        wierzcholek = WierzcholekGrafu(str(i + 1))
+        wierzcholki.append(wierzcholek)
 
-wierzcholki[0].polacz_wierzcholek(wierzcholki[1])
-wierzcholki[0].polacz_wierzcholek(wierzcholki[2])
-wierzcholki[0].polacz_wierzcholek(wierzcholki[3])
-wierzcholki[0].polacz_wierzcholek(wierzcholki[4])
-wierzcholki[1].polacz_wierzcholek(wierzcholki[2])
-wierzcholki[1].polacz_wierzcholek(wierzcholki[3])
-wierzcholki[1].polacz_wierzcholek(wierzcholki[4])
-wierzcholki[2].polacz_wierzcholek(wierzcholki[3])
-wierzcholki[2].polacz_wierzcholek(wierzcholki[4])
-wierzcholki[3].polacz_wierzcholek(wierzcholki[4])
+    wierzcholki[0].polacz_wierzcholek(wierzcholki[1])
+    wierzcholki[1].polacz_wierzcholek(wierzcholki[2])
+    wierzcholki[2].polacz_wierzcholek(wierzcholki[3])
+    wierzcholki[3].polacz_wierzcholek(wierzcholki[0])
 
+    return wierzcholki
+
+
+def main():
+    wierzcholki = przykladowyGraf();
+    print(fleury(wierzcholki))
+
+
+if __name__ == "__main__":
+    main()
 
 
 
